@@ -1,0 +1,19 @@
+type Deposit @entity {
+    id: ID!
+    user: String!
+    token: String!
+    amount: String!
+    blockNumber: Int!
+    blockTimestamp: String!
+    txHash: String!
+}
+
+type Withdraw @entity {
+    id: ID!
+    user: String!
+    token: String!
+    amount: String!
+    blockNumber: Int!
+    blockTimestamp: String!
+    txHash: String!
+}
