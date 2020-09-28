@@ -4,8 +4,7 @@ import {
     ManualEpochInit as ManualEpochInitEvent,
     Withdraw as WithdrawEvent
 } from '../generated/Staking/Staking'
-import {StakingAction, EmergencyWithdraw, ManualEpochInit} from '../generated/schema'
-import { Address } from '@graphprotocol/graph-ts'
+import {EmergencyWithdraw, ManualEpochInit, StakingAction} from '../generated/schema'
 
 export function handleDeposit(event: DepositEvent): void {
     let id = event.transaction.hash.toHex() + "_" + event.transactionLogIndex.toString()
@@ -49,6 +48,9 @@ export function handleManualEpochInit(event: ManualEpochInitEvent): void {
         t.push(tokens[i].toHex())
     }
 
+    mei.blockNumber = event.block.number.toI32()
+    mei.blockTimestamp = event.block.timestamp.toString()
+    mei.txHash = event.transaction.hash.toHex()
     mei.tokens = t
     mei.save()
 }
@@ -60,5 +62,8 @@ export function handleEmergencyWithdraw(event: EmergencyWithdrawEvent): void {
     ew.user = event.params.user
     ew.token = event.params.tokenAddress
     ew.amount = event.params.amount
+    ew.blockNumber = event.block.number.toI32()
+    ew.blockTimestamp = event.block.timestamp.toString()
+    ew.txHash = event.transaction.hash.toHex()
     ew.save()
 }

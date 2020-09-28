@@ -1,5 +1,5 @@
 specVersion: 0.0.2
-description: Barnbridge Subgraph
+description: Barnbridge
 repository: https://github.com/BarnBridge/barnbridge-subgraph
 schema:
   file: ./schema.graphql
@@ -10,6 +10,7 @@ dataSources:
     source:
       address: '0x2e93403C675Ccb9C564edf2dC6001233d0650582'
       abi: Staking
+      startBlock: 7275099
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -35,6 +36,7 @@ dataSources:
     source:
       address: '0x7Fd16Fa50C437255c94c1Fc7798fe57A0c07469a'
       abi: YieldFarm
+      startBlock: 7275099
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -56,6 +58,7 @@ dataSources:
     source:
       address: '0x7720C00A63A1E33f2B48fD24Ac49441Cf18a0Ee2'
       abi: YieldFarmLP
+      startBlock: 7275099
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -77,6 +80,7 @@ dataSources:
     source:
       address: '0xdbDa402F87E8EaCB22716566008d404873fb5E8c'
       abi: CommunityVault
+      startBlock: 7275099
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

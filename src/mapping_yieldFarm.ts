@@ -9,6 +9,9 @@ export function handleMassHarvest(event: MassHarvestEvent): void {
     mh.user = event.params.user
     mh.epochsHarvested = event.params.epochsHarvested.toI32()
     mh.amount = event.params.totalValue
+    mh.blockNumber = event.block.number.toI32()
+    mh.blockTimestamp = event.block.timestamp.toString()
+    mh.txHash = event.transaction.hash.toHex()
     mh.save()
 }
 
@@ -19,6 +22,9 @@ export function handleMassHarvestLP(event: MassHarvestEventLP): void {
     mh.user = event.params.user
     mh.epochsHarvested = event.params.epochsHarvested.toI32()
     mh.amount = event.params.totalValue
+    mh.blockNumber = event.block.number.toI32()
+    mh.blockTimestamp = event.block.timestamp.toString()
+    mh.txHash = event.transaction.hash.toHex()
     mh.save()
 }
 
@@ -29,6 +35,9 @@ export function handleHarvest(event: HarvestEvent): void {
     h.user = event.params.user
     h.epochId = event.params.epochId.toI32()
     h.amount = event.params.amount
+    h.blockNumber = event.block.number.toI32()
+    h.blockTimestamp = event.block.timestamp.toString()
+    h.txHash = event.transaction.hash.toHex()
     h.save()
 }
 
@@ -39,5 +48,8 @@ export function handleHarvestLP(event: HarvestEventLP): void {
     h.user = event.params.user
     h.epochId = event.params.epochId.toI32()
     h.amount = event.params.amount
+    h.blockNumber = event.block.number.toI32()
+    h.blockTimestamp = event.block.timestamp.toString()
+    h.txHash = event.transaction.hash.toHex()
     h.save()
 }
