@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class Deposit extends Entity {
+export class StakingAction extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class Deposit extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save Deposit entity without an ID");
+    assert(id !== null, "Cannot save StakingAction entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save Deposit entity with non-string ID. " +
+      "Cannot save StakingAction entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("Deposit", id.toString(), this);
+    store.set("StakingAction", id.toString(), this);
   }
 
-  static load(id: string): Deposit | null {
-    return store.get("Deposit", id) as Deposit | null;
+  static load(id: string): StakingAction | null {
+    return store.get("StakingAction", id) as StakingAction | null;
   }
 
   get id(): string {
@@ -42,31 +42,40 @@ export class Deposit extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get user(): string {
+  get type(): string {
+    let value = this.get("type");
+    return value.toString();
+  }
+
+  set type(value: string) {
+    this.set("type", Value.fromString(value));
+  }
+
+  get user(): Bytes {
     let value = this.get("user");
-    return value.toString();
+    return value.toBytes();
   }
 
-  set user(value: string) {
-    this.set("user", Value.fromString(value));
+  set user(value: Bytes) {
+    this.set("user", Value.fromBytes(value));
   }
 
-  get token(): string {
+  get token(): Bytes {
     let value = this.get("token");
-    return value.toString();
+    return value.toBytes();
   }
 
-  set token(value: string) {
-    this.set("token", Value.fromString(value));
+  set token(value: Bytes) {
+    this.set("token", Value.fromBytes(value));
   }
 
-  get amount(): string {
+  get amount(): BigInt {
     let value = this.get("amount");
-    return value.toString();
+    return value.toBigInt();
   }
 
-  set amount(value: string) {
-    this.set("amount", Value.fromString(value));
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 
   get blockNumber(): i32 {
@@ -97,7 +106,7 @@ export class Deposit extends Entity {
   }
 }
 
-export class Withdraw extends Entity {
+export class ManualEpochInit extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -105,17 +114,17 @@ export class Withdraw extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save Withdraw entity without an ID");
+    assert(id !== null, "Cannot save ManualEpochInit entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save Withdraw entity with non-string ID. " +
+      "Cannot save ManualEpochInit entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("Withdraw", id.toString(), this);
+    store.set("ManualEpochInit", id.toString(), this);
   }
 
-  static load(id: string): Withdraw | null {
-    return store.get("Withdraw", id) as Withdraw | null;
+  static load(id: string): ManualEpochInit | null {
+    return store.get("ManualEpochInit", id) as ManualEpochInit | null;
   }
 
   get id(): string {
@@ -127,31 +136,377 @@ export class Withdraw extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get user(): string {
+  get user(): Bytes {
     let value = this.get("user");
+    return value.toBytes();
+  }
+
+  set user(value: Bytes) {
+    this.set("user", Value.fromBytes(value));
+  }
+
+  get epochId(): i32 {
+    let value = this.get("epochId");
+    return value.toI32();
+  }
+
+  set epochId(value: i32) {
+    this.set("epochId", Value.fromI32(value));
+  }
+
+  get tokens(): Array<string> {
+    let value = this.get("tokens");
+    return value.toStringArray();
+  }
+
+  set tokens(value: Array<string>) {
+    this.set("tokens", Value.fromStringArray(value));
+  }
+
+  get blockNumber(): i32 {
+    let value = this.get("blockNumber");
+    return value.toI32();
+  }
+
+  set blockNumber(value: i32) {
+    this.set("blockNumber", Value.fromI32(value));
+  }
+
+  get blockTimestamp(): string {
+    let value = this.get("blockTimestamp");
     return value.toString();
   }
 
-  set user(value: string) {
-    this.set("user", Value.fromString(value));
+  set blockTimestamp(value: string) {
+    this.set("blockTimestamp", Value.fromString(value));
   }
 
-  get token(): string {
+  get txHash(): string {
+    let value = this.get("txHash");
+    return value.toString();
+  }
+
+  set txHash(value: string) {
+    this.set("txHash", Value.fromString(value));
+  }
+}
+
+export class EmergencyWithdraw extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save EmergencyWithdraw entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save EmergencyWithdraw entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("EmergencyWithdraw", id.toString(), this);
+  }
+
+  static load(id: string): EmergencyWithdraw | null {
+    return store.get("EmergencyWithdraw", id) as EmergencyWithdraw | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get user(): Bytes {
+    let value = this.get("user");
+    return value.toBytes();
+  }
+
+  set user(value: Bytes) {
+    this.set("user", Value.fromBytes(value));
+  }
+
+  get token(): Bytes {
     let value = this.get("token");
-    return value.toString();
+    return value.toBytes();
   }
 
-  set token(value: string) {
-    this.set("token", Value.fromString(value));
+  set token(value: Bytes) {
+    this.set("token", Value.fromBytes(value));
   }
 
-  get amount(): string {
+  get amount(): BigInt {
     let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): i32 {
+    let value = this.get("blockNumber");
+    return value.toI32();
+  }
+
+  set blockNumber(value: i32) {
+    this.set("blockNumber", Value.fromI32(value));
+  }
+
+  get blockTimestamp(): string {
+    let value = this.get("blockTimestamp");
     return value.toString();
   }
 
-  set amount(value: string) {
-    this.set("amount", Value.fromString(value));
+  set blockTimestamp(value: string) {
+    this.set("blockTimestamp", Value.fromString(value));
+  }
+
+  get txHash(): string {
+    let value = this.get("txHash");
+    return value.toString();
+  }
+
+  set txHash(value: string) {
+    this.set("txHash", Value.fromString(value));
+  }
+}
+
+export class Harvest extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Harvest entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Harvest entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Harvest", id.toString(), this);
+  }
+
+  static load(id: string): Harvest | null {
+    return store.get("Harvest", id) as Harvest | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get user(): Bytes {
+    let value = this.get("user");
+    return value.toBytes();
+  }
+
+  set user(value: Bytes) {
+    this.set("user", Value.fromBytes(value));
+  }
+
+  get epochId(): i32 {
+    let value = this.get("epochId");
+    return value.toI32();
+  }
+
+  set epochId(value: i32) {
+    this.set("epochId", Value.fromI32(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): i32 {
+    let value = this.get("blockNumber");
+    return value.toI32();
+  }
+
+  set blockNumber(value: i32) {
+    this.set("blockNumber", Value.fromI32(value));
+  }
+
+  get blockTimestamp(): string {
+    let value = this.get("blockTimestamp");
+    return value.toString();
+  }
+
+  set blockTimestamp(value: string) {
+    this.set("blockTimestamp", Value.fromString(value));
+  }
+
+  get txHash(): string {
+    let value = this.get("txHash");
+    return value.toString();
+  }
+
+  set txHash(value: string) {
+    this.set("txHash", Value.fromString(value));
+  }
+}
+
+export class MassHarvest extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save MassHarvest entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save MassHarvest entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("MassHarvest", id.toString(), this);
+  }
+
+  static load(id: string): MassHarvest | null {
+    return store.get("MassHarvest", id) as MassHarvest | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get user(): Bytes {
+    let value = this.get("user");
+    return value.toBytes();
+  }
+
+  set user(value: Bytes) {
+    this.set("user", Value.fromBytes(value));
+  }
+
+  get epochsHarvested(): i32 {
+    let value = this.get("epochsHarvested");
+    return value.toI32();
+  }
+
+  set epochsHarvested(value: i32) {
+    this.set("epochsHarvested", Value.fromI32(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): i32 {
+    let value = this.get("blockNumber");
+    return value.toI32();
+  }
+
+  set blockNumber(value: i32) {
+    this.set("blockNumber", Value.fromI32(value));
+  }
+
+  get blockTimestamp(): string {
+    let value = this.get("blockTimestamp");
+    return value.toString();
+  }
+
+  set blockTimestamp(value: string) {
+    this.set("blockTimestamp", Value.fromString(value));
+  }
+
+  get txHash(): string {
+    let value = this.get("txHash");
+    return value.toString();
+  }
+
+  set txHash(value: string) {
+    this.set("txHash", Value.fromString(value));
+  }
+}
+
+export class CommunityVaultAllowance extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(
+      id !== null,
+      "Cannot save CommunityVaultAllowance entity without an ID"
+    );
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save CommunityVaultAllowance entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("CommunityVaultAllowance", id.toString(), this);
+  }
+
+  static load(id: string): CommunityVaultAllowance | null {
+    return store.get(
+      "CommunityVaultAllowance",
+      id
+    ) as CommunityVaultAllowance | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get caller(): Bytes {
+    let value = this.get("caller");
+    return value.toBytes();
+  }
+
+  set caller(value: Bytes) {
+    this.set("caller", Value.fromBytes(value));
+  }
+
+  get spender(): Bytes {
+    let value = this.get("spender");
+    return value.toBytes();
+  }
+
+  set spender(value: Bytes) {
+    this.set("spender", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 
   get blockNumber(): i32 {

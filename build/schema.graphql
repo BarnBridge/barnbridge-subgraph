@@ -1,18 +1,64 @@
-type Deposit @entity {
+enum StakingActionType {
+    DEPOSIT
+    WITHDRAW
+}
+
+type StakingAction @entity {
     id: ID!
-    user: String!
-    token: String!
-    amount: String!
+    type: StakingActionType!
+    user: Bytes!
+    token: Bytes!
+    amount: BigInt!
     blockNumber: Int!
     blockTimestamp: String!
     txHash: String!
 }
 
-type Withdraw @entity {
+type ManualEpochInit @entity {
     id: ID!
-    user: String!
-    token: String!
-    amount: String!
+    user: Bytes!
+    epochId: Int!
+    tokens: [String!]!
+    blockNumber: Int!
+    blockTimestamp: String!
+    txHash: String!
+}
+
+type EmergencyWithdraw @entity {
+    id: ID!
+    user: Bytes!
+    token: Bytes!
+    amount: BigInt!
+    blockNumber: Int!
+    blockTimestamp: String!
+    txHash: String!
+}
+
+type Harvest @entity {
+    id: ID!
+    user: Bytes!
+    epochId: Int!
+    amount: BigInt!
+    blockNumber: Int!
+    blockTimestamp: String!
+    txHash: String!
+}
+
+type MassHarvest @entity {
+    id: ID!
+    user: Bytes!
+    epochsHarvested: Int!
+    amount: BigInt!
+    blockNumber: Int!
+    blockTimestamp: String!
+    txHash: String!
+}
+
+type CommunityVaultAllowance @entity {
+    id: ID!
+    caller: Bytes!
+    spender: Bytes!
+    amount: BigInt!
     blockNumber: Int!
     blockTimestamp: String!
     txHash: String!

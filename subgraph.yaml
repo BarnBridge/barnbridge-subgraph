@@ -6,9 +6,9 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Staking
-    network: mainnet
+    network: rinkeby
     source:
-      address: '0x28457FFCaFF6a1d35D4Ab85A0e848eE96659b028'
+      address: '0x2e93403C675Ccb9C564edf2dC6001233d0650582'
       abi: Staking
     mapping:
       kind: ethereum/events
@@ -24,4 +24,69 @@ dataSources:
           handler: handleDeposit
         - event: Withdraw(indexed address,indexed address,uint256)
           handler: handleWithdraw
+        - event: ManualEpochInit(indexed address,indexed uint128,address[])
+          handler: handleManualEpochInit
+        - event: EmergencyWithdraw(indexed address,indexed address,uint256)
+          handler: handleEmergencyWithdraw
       file: ./src/mapping.ts
+  - kind: ethereum/contract
+    name: YieldFarm
+    network: rinkeby
+    source:
+      address: '0x7Fd16Fa50C437255c94c1Fc7798fe57A0c07469a'
+      abi: YieldFarm
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - YieldFarm
+      abis:
+        - name: YieldFarm
+          file: ./abis/YieldFarm.json
+      eventHandlers:
+        - event: MassHarvest(indexed address,uint256,uint256)
+          handler: handleMassHarvest
+        - event: Harvest(indexed address,indexed uint128,uint256)
+          handler: handleHarvest
+      file: ./src/mapping_yieldFarm.ts
+  - kind: ethereum/contract
+    name: YieldFarmLP
+    network: rinkeby
+    source:
+      address: '0x7720C00A63A1E33f2B48fD24Ac49441Cf18a0Ee2'
+      abi: YieldFarmLP
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - YieldFarmLP
+      abis:
+        - name: YieldFarmLP
+          file: ./abis/YieldFarmLP.json
+      eventHandlers:
+        - event: MassHarvest(indexed address,uint256,uint256)
+          handler: handleMassHarvestLP
+        - event: Harvest(indexed address,indexed uint128,uint256)
+          handler: handleHarvestLP
+      file: ./src/mapping_yieldFarm.ts
+  - kind: ethereum/contract
+    name: CommunityVault
+    network: rinkeby
+    source:
+      address: '0xdbDa402F87E8EaCB22716566008d404873fb5E8c'
+      abi: CommunityVault
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - CommunityVault
+      abis:
+        - name: CommunityVault
+          file: ./abis/CommunityVault.json
+      eventHandlers:
+        - event: SetAllowance(indexed address,indexed address,uint256)
+          handler: handleSetAllowance
+      file: ./src/mapping_communityVault.ts
