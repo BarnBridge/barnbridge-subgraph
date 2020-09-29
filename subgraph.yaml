@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: Barnbridge
-repository: https://github.com/BarnBridge/barnbridge-subgraph
+repository: https://github.com/BarnBridge/barnbridge-contracts
 schema:
   file: ./schema.graphql
 dataSources:
@@ -34,7 +34,7 @@ dataSources:
     name: YieldFarm
     network: rinkeby
     source:
-      address: '0x7Fd16Fa50C437255c94c1Fc7798fe57A0c07469a'
+      address: '0xb961C56D95AA4E0C3625f4E047c252D65D1f99E4'
       abi: YieldFarm
       startBlock: 7275099
     mapping:
@@ -56,7 +56,7 @@ dataSources:
     name: YieldFarmLP
     network: rinkeby
     source:
-      address: '0x7720C00A63A1E33f2B48fD24Ac49441Cf18a0Ee2'
+      address: '0xa9c0b16D299C4C2CCaC8968b23069EDC21e430f1'
       abi: YieldFarmLP
       startBlock: 7275099
     mapping:
