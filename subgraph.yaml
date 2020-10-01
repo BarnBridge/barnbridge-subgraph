@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: Barnbridge
-repository: https://github.com/BarnBridge/barnbridge-contracts
+repository: https://github.com/BarnBridge/barnbridge-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
