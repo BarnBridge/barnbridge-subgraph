@@ -9,7 +9,7 @@ export function handleSetAllowance(event: SetAllowance): void {
     cva.spender = event.params.spender
     cva.amount = event.params.amount
     cva.blockNumber = event.block.number.toI32()
-    cva.blockTimestamp = event.block.timestamp.toString()
+    cva.blockTimestamp = event.block.timestamp.toI32()
     cva.txHash = event.transaction.hash.toHex()
     cva.save()
 }

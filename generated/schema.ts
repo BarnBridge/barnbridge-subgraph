@@ -87,13 +87,13 @@ export class StakingAction extends Entity {
     this.set("blockNumber", Value.fromI32(value));
   }
 
-  get blockTimestamp(): string {
+  get blockTimestamp(): i32 {
     let value = this.get("blockTimestamp");
-    return value.toString();
+    return value.toI32();
   }
 
-  set blockTimestamp(value: string) {
-    this.set("blockTimestamp", Value.fromString(value));
+  set blockTimestamp(value: i32) {
+    this.set("blockTimestamp", Value.fromI32(value));
   }
 
   get txHash(): string {
@@ -172,13 +172,13 @@ export class ManualEpochInit extends Entity {
     this.set("blockNumber", Value.fromI32(value));
   }
 
-  get blockTimestamp(): string {
+  get blockTimestamp(): i32 {
     let value = this.get("blockTimestamp");
-    return value.toString();
+    return value.toI32();
   }
 
-  set blockTimestamp(value: string) {
-    this.set("blockTimestamp", Value.fromString(value));
+  set blockTimestamp(value: i32) {
+    this.set("blockTimestamp", Value.fromI32(value));
   }
 
   get txHash(): string {
@@ -257,13 +257,13 @@ export class EmergencyWithdraw extends Entity {
     this.set("blockNumber", Value.fromI32(value));
   }
 
-  get blockTimestamp(): string {
+  get blockTimestamp(): i32 {
     let value = this.get("blockTimestamp");
-    return value.toString();
+    return value.toI32();
   }
 
-  set blockTimestamp(value: string) {
-    this.set("blockTimestamp", Value.fromString(value));
+  set blockTimestamp(value: i32) {
+    this.set("blockTimestamp", Value.fromI32(value));
   }
 
   get txHash(): string {
@@ -342,13 +342,13 @@ export class Harvest extends Entity {
     this.set("blockNumber", Value.fromI32(value));
   }
 
-  get blockTimestamp(): string {
+  get blockTimestamp(): i32 {
     let value = this.get("blockTimestamp");
-    return value.toString();
+    return value.toI32();
   }
 
-  set blockTimestamp(value: string) {
-    this.set("blockTimestamp", Value.fromString(value));
+  set blockTimestamp(value: i32) {
+    this.set("blockTimestamp", Value.fromI32(value));
   }
 
   get txHash(): string {
@@ -427,13 +427,13 @@ export class MassHarvest extends Entity {
     this.set("blockNumber", Value.fromI32(value));
   }
 
-  get blockTimestamp(): string {
+  get blockTimestamp(): i32 {
     let value = this.get("blockTimestamp");
-    return value.toString();
+    return value.toI32();
   }
 
-  set blockTimestamp(value: string) {
-    this.set("blockTimestamp", Value.fromString(value));
+  set blockTimestamp(value: i32) {
+    this.set("blockTimestamp", Value.fromI32(value));
   }
 
   get txHash(): string {
@@ -518,13 +518,13 @@ export class CommunityVaultAllowance extends Entity {
     this.set("blockNumber", Value.fromI32(value));
   }
 
-  get blockTimestamp(): string {
+  get blockTimestamp(): i32 {
     let value = this.get("blockTimestamp");
-    return value.toString();
+    return value.toI32();
   }
 
-  set blockTimestamp(value: string) {
-    this.set("blockTimestamp", Value.fromString(value));
+  set blockTimestamp(value: i32) {
+    this.set("blockTimestamp", Value.fromI32(value));
   }
 
   get txHash(): string {

@@ -15,7 +15,7 @@ export function handleDeposit(event: DepositEvent): void {
     d.token = event.params.tokenAddress
     d.amount = event.params.amount
     d.blockNumber = event.block.number.toI32()
-    d.blockTimestamp = event.block.timestamp.toString()
+    d.blockTimestamp = event.block.timestamp.toI32()
     d.txHash = event.transaction.hash.toHex()
     d.save()
 }
@@ -29,7 +29,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
     w.token = event.params.tokenAddress
     w.amount = event.params.amount
     w.blockNumber = event.block.number.toI32()
-    w.blockTimestamp = event.block.timestamp.toString()
+    w.blockTimestamp = event.block.timestamp.toI32()
     w.txHash = event.transaction.hash.toHex()
     w.save()
 }
@@ -49,7 +49,7 @@ export function handleManualEpochInit(event: ManualEpochInitEvent): void {
     }
 
     mei.blockNumber = event.block.number.toI32()
-    mei.blockTimestamp = event.block.timestamp.toString()
+    mei.blockTimestamp = event.block.timestamp.toI32()
     mei.txHash = event.transaction.hash.toHex()
     mei.tokens = t
     mei.save()
@@ -63,7 +63,7 @@ export function handleEmergencyWithdraw(event: EmergencyWithdrawEvent): void {
     ew.token = event.params.tokenAddress
     ew.amount = event.params.amount
     ew.blockNumber = event.block.number.toI32()
-    ew.blockTimestamp = event.block.timestamp.toString()
+    ew.blockTimestamp = event.block.timestamp.toI32()
     ew.txHash = event.transaction.hash.toHex()
     ew.save()
 }

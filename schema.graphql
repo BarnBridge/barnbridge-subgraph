@@ -10,7 +10,7 @@ type StakingAction @entity {
     token: Bytes!
     amount: BigInt!
     blockNumber: Int!
-    blockTimestamp: String!
+    blockTimestamp: Int!
     txHash: String!
 }
 
@@ -20,7 +20,7 @@ type ManualEpochInit @entity {
     epochId: Int!
     tokens: [String!]!
     blockNumber: Int!
-    blockTimestamp: String!
+    blockTimestamp: Int!
     txHash: String!
 }
 
@@ -30,7 +30,7 @@ type EmergencyWithdraw @entity {
     token: Bytes!
     amount: BigInt!
     blockNumber: Int!
-    blockTimestamp: String!
+    blockTimestamp: Int!
     txHash: String!
 }
 
@@ -40,7 +40,7 @@ type Harvest @entity {
     epochId: Int!
     amount: BigInt!
     blockNumber: Int!
-    blockTimestamp: String!
+    blockTimestamp: Int!
     txHash: String!
 }
 
@@ -50,7 +50,7 @@ type MassHarvest @entity {
     epochsHarvested: Int!
     amount: BigInt!
     blockNumber: Int!
-    blockTimestamp: String!
+    blockTimestamp: Int!
     txHash: String!
 }
 
@@ -60,6 +60,6 @@ type CommunityVaultAllowance @entity {
     spender: Bytes!
     amount: BigInt!
     blockNumber: Int!
-    blockTimestamp: String!
+    blockTimestamp: Int!
     txHash: String!
 }
