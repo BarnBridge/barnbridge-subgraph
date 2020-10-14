@@ -380,36 +380,6 @@ export class HarvestCall__Outputs {
   }
 }
 
-export class InitEpochCall extends ethereum.Call {
-  get inputs(): InitEpochCall__Inputs {
-    return new InitEpochCall__Inputs(this);
-  }
-
-  get outputs(): InitEpochCall__Outputs {
-    return new InitEpochCall__Outputs(this);
-  }
-}
-
-export class InitEpochCall__Inputs {
-  _call: InitEpochCall;
-
-  constructor(call: InitEpochCall) {
-    this._call = call;
-  }
-
-  get epochId(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class InitEpochCall__Outputs {
-  _call: InitEpochCall;
-
-  constructor(call: InitEpochCall) {
-    this._call = call;
-  }
-}
-
 export class MassHarvestCall extends ethereum.Call {
   get inputs(): MassHarvestCall__Inputs {
     return new MassHarvestCall__Inputs(this);

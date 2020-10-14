@@ -242,6 +242,38 @@ export class Staking extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  epochIsInitialized(token: Address, epochId: BigInt): boolean {
+    let result = super.call(
+      "epochIsInitialized",
+      "epochIsInitialized(address,uint128):(bool)",
+      [
+        ethereum.Value.fromAddress(token),
+        ethereum.Value.fromUnsignedBigInt(epochId)
+      ]
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_epochIsInitialized(
+    token: Address,
+    epochId: BigInt
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "epochIsInitialized",
+      "epochIsInitialized(address,uint128):(bool)",
+      [
+        ethereum.Value.fromAddress(token),
+        ethereum.Value.fromUnsignedBigInt(epochId)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
   getCurrentEpoch(): BigInt {
     let result = super.call(
       "getCurrentEpoch",
