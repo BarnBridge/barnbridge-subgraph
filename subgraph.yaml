@@ -75,6 +75,28 @@ dataSources:
           handler: handleHarvestLP
       file: ./src/mapping_yieldFarm.ts
   - kind: ethereum/contract
+    name: YieldFarmBond
+    network: mainnet
+    source:
+      address: '0x3FdFb07472ea4771E1aD66FD3b87b265Cd4ec112'
+      abi: YieldFarmBond
+      startBlock: 11249724
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - YieldFarmBond
+      abis:
+        - name: YieldFarmBond
+          file: ./abis/YieldFarmBond.json
+      eventHandlers:
+        - event: MassHarvest(indexed address,uint256,uint256)
+          handler: handleMassHarvestBond
+        - event: Harvest(indexed address,indexed uint128,uint256)
+          handler: handleHarvestBond
+      file: ./src/mapping_yieldFarm.ts
+  - kind: ethereum/contract
     name: CommunityVault
     network: mainnet
     source:
